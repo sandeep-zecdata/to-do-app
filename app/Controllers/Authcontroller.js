@@ -16,7 +16,7 @@ exports.login = async (req,res) => {
 
     const user = await User.findOne({user_name:req.body.user_name});
     if(!user){
-        res.status(404).json({error:"user not found"});
+        res.status(404).json({error:"invalid username or password!"});
         return;
     }
 

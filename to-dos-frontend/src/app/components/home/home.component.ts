@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ServiceService } from 'src/app/services/service.service';
 import Swal from "sweetalert2";
-
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -18,11 +18,17 @@ export class HomeComponent implements OnInit {
   task_id:any;
   current_user_id:any;
 
-  constructor(private taskservice: ServiceService) {
+  constructor(private taskservice: ServiceService,
+    private router: Router) {
 
   }
 
   ngOnInit(): void {
+    console.log("home")
+    const isLoggedIn = localStorage.getItem('user_id');
+    if (!isLoggedIn) {
+      this.router.navigate(['']); // Navigate to the login route if the user is not logged in
+    }
     this.current_user_id = localStorage.getItem('user_id');
     console.log("current user id",this.current_user_id);
     this.myForm = new FormGroup({

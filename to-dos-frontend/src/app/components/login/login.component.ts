@@ -52,7 +52,6 @@ export class LoginComponent implements OnInit {
             localStorage.setItem('user_id', res.user._id);
             localStorage.setItem('user_name', res.user.user_name);
 
-
           if(res){
               this.router.navigateByUrl('/task');
           }
